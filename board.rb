@@ -13,6 +13,10 @@ class Board
     guesses[turn] = [guess, key]
   end
 
+  def valid_guess?(code)
+    code.length == @code_length && code.all? { |num| @code_pegs.include?(num) }
+  end
+
   def game_over?(guess)
     @code == guess
   end
