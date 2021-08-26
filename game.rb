@@ -9,6 +9,7 @@ class Game
   attr_reader :turn
 
   def initialize
+    @game_over = false
     @turn_number = 1
     @max_turns = 12
     @game_mode_options = %w[1 2]
@@ -17,11 +18,39 @@ class Game
   def play_game(game_mode)
     @game_mode = game_mode
     setup
+    create_code
+    play_turn until @game_over || turn_number > @max_turns
+    game_end_message
   end
 
   def setup
     @board = Board.new
     game_roles
+  end
+
+  def create_code
+    while (code = @codemaker.make_code(@board.code_length, @board.code_pegs))
+      break @board.code = code if @board.valid_code?(code)
+
+      input_warning
+    end
+  end
+
+  def input_guess
+    while (code = @codemaker.guess_code(@board.code_length, @board.code_pegs))
+      return code if @board.valid_code?(code)
+
+      input_warning
+    end
+  end
+
+  def play_turn
+    guess = input_guess
+    hints = @board.generate_hints(guess)
+    @board.update_guesses(@turn, guess, hints)
+    @game_over = @board.game_over?(guess)
+    @board.draw_board
+    @turn_number += 1
   end
 
   def game_roles
