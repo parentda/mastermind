@@ -6,7 +6,6 @@ require_relative 'computer'
 
 class Game
   include Display
-  attr_reader :turn
 
   def initialize
     @game_over = false
@@ -16,6 +15,7 @@ class Game
   end
 
   def play
+    game_start_message
     setup
     create_code
     play_turn until @game_over || @turn_number > @max_turns
