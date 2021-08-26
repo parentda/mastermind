@@ -60,9 +60,11 @@ class Board
   end
 
   def draw_board
-    @guesses.each do |turn, value|
-      puts "Turn #{turn}   |   #{value[0].join(' ')}   |   #{value[1].join(' ')}"
-    end
+    puts "Turn #{@guesses.keys.last}   |   #{@guesses[@guesses.keys.last][0].join(' ')}   |   #{@guesses[@guesses.keys.last][1].join(' ')}"
+
+    # @guesses.each do |turn, value|
+    #   puts "Turn #{turn}   |   #{value[0].join(' ')}   |   #{value[1].join(' ')}"
+    # end
   end
 end
 

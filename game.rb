@@ -15,8 +15,7 @@ class Game
     @game_mode_options = %w[1 2]
   end
 
-  def play_game(game_mode)
-    @game_mode = game_mode
+  def play
     setup
     create_code
     play_turn until @game_over || @turn_number > @max_turns
@@ -24,6 +23,7 @@ class Game
   end
 
   def setup
+    input_game_mode
     @board = Board.new
     game_roles
   end
@@ -44,6 +44,15 @@ class Game
     end
   end
 
+  def input_game_mode
+    game_mode_message
+    while (@game_mode = gets.chomp)
+      break if @game_mode_options.include?(@game_mode)
+
+      input_warning
+    end
+  end
+
   def play_turn
     guess = input_guess
     hints = @board.generate_hints(guess, @board.code)
@@ -56,13 +65,12 @@ class Game
   def game_roles
     case @game_mode
     when @game_mode_options[0]
+      @codemaker = Computer.new
       @codebreaker = Human.new
-      @codemaker = Computer.new(@board)
     when @game_mode_options[1]
-      @codebreaker = Computer.new(@board)
       @codemaker = Human.new
-    else
-      puts 'Error, invalid selection'
+      @codebreaker = Computer.new
+      @codebreaker.generate_code_set(@board)
     end
   end
 end

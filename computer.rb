@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Computer
-  def initialize(board)
-    @code_set = board.code_pegs.repeated_permutation(board.code_length).to_a
-    @initial_guess = @code_set.sample
+  def initialize
+    @code_set = []
   end
 
   def make_code(board)
@@ -16,6 +15,11 @@ class Computer
 
     reduce_code_set(board)
     @code_set.sample
+  end
+
+  def generate_code_set(board)
+    @code_set = board.code_pegs.repeated_permutation(board.code_length).to_a
+    @initial_guess = @code_set.sample
   end
 
   def reduce_code_set(board)

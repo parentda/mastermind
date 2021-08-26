@@ -9,6 +9,11 @@ module Display
     puts "Please enter #{code_length} numbers between #{code_pegs.first} & #{code_pegs.last} to guess the code:"
   end
 
+  def game_mode_message
+    puts 'Enter 1 to be the Codebreaker'
+    puts 'Enter 2 to be the Codemaker'
+  end
+
   def input_warning
     puts "\033[31mSorry, that input was invalid\033[0m"
   end
