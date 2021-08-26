@@ -7,4 +7,8 @@ class Game
     @turn_number = 1
     @max_turns = 12
   end
+
+  def play_game; end
+
+  def game_setup; end
 end

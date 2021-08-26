@@ -3,7 +3,9 @@
 class Human
   def initialize; end
 
-  def input_code
+  def make_code
     gets.chomp.split('').map(&:to_i)
   end
+
+  alias guess_code make_code
 end

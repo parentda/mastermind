@@ -65,10 +65,10 @@ class Board
   end
 end
 
-board = Board.new
-board.code = [1, 2, 4, 3]
-hint1 = board.generate_hints([4, 1, 1, 3])
-board.update_guesses(1, [4, 1, 1, 3], hint1)
-hint2 = board.generate_hints([1, 2, 1, 3])
-board.update_guesses(2, [1, 2, 1, 3], hint2)
-board.draw_board
+# board = Board.new
+# board.code = [1, 2, 4, 3]
+# hint1 = board.generate_hints([4, 1, 1, 3])
+# board.update_guesses(1, [4, 1, 1, 3], hint1)
+# hint2 = board.generate_hints([1, 2, 1, 3])
+# board.update_guesses(2, [1, 2, 1, 3], hint2)
+# board.draw_board
