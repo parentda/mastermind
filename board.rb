@@ -14,9 +14,9 @@ class Board
       guess.all? { |num| @code_pegs.include?(num) }
   end
 
-  def generate_hints(guess)
+  def generate_hints(guess, code)
     hints = []
-    num_exact_matches, guesses_filtered = exact_matches(guess)
+    num_exact_matches, guesses_filtered = exact_matches(guess, code)
     num_partial_matches =
       num_exact_matches == @code_length ? 0 : partial_matches(guesses_filtered)
     num_exact_matches.times { hints << 'R' }
@@ -24,10 +24,10 @@ class Board
     hints
   end
 
-  def exact_matches(guess)
+  def exact_matches(guess, code)
     num_matches = 0
     guess_filtered =
-      @code
+      code
         .zip(guess)
         .reject { |pair| num_matches += 1 if pair.uniq.count == 1 }
         .transpose

@@ -29,7 +29,7 @@ class Game
   end
 
   def create_code
-    while (code = @codemaker.make_code(@board.code_length, @board.code_pegs))
+    while (code = @codemaker.make_code(@board))
       break @board.code = code if @board.valid_code?(code)
 
       input_warning
@@ -46,7 +46,7 @@ class Game
 
   def play_turn
     guess = input_guess
-    hints = @board.generate_hints(guess)
+    hints = @board.generate_hints(guess, @board.code)
     @board.update_guesses(@turn_number, guess, hints)
     @board.draw_board
     @game_over = @board.game_over?(guess)
