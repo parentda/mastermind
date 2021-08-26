@@ -17,7 +17,8 @@ class Board
   def generate_hints(guess)
     hints = []
     num_exact_matches, guesses_filtered = exact_matches(guess)
-    num_partial_matches = partial_matches(guesses_filtered)
+    num_partial_matches =
+      num_exact_matches == @code_length ? 0 : partial_matches(guesses_filtered)
     num_exact_matches.times { hints << 'R' }
     num_partial_matches.times { hints << 'W' }
     hints

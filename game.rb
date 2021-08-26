@@ -19,7 +19,7 @@ class Game
     @game_mode = game_mode
     setup
     create_code
-    play_turn until @game_over || turn_number > @max_turns
+    play_turn until @game_over || @turn_number > @max_turns
     game_end_message
   end
 
@@ -37,7 +37,7 @@ class Game
   end
 
   def input_guess
-    while (code = @codemaker.guess_code(@board.code_length, @board.code_pegs))
+    while (code = @codebreaker.guess_code(@board.code_length, @board.code_pegs))
       return code if @board.valid_code?(code)
 
       input_warning
@@ -47,7 +47,7 @@ class Game
   def play_turn
     guess = input_guess
     hints = @board.generate_hints(guess)
-    @board.update_guesses(@turn, guess, hints)
+    @board.update_guesses(@turn_number, guess, hints)
     @game_over = @board.game_over?(guess)
     @board.draw_board
     @turn_number += 1

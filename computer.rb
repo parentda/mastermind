@@ -7,7 +7,7 @@ class Computer
     Array.new(code_length) { code_pegs.sample }
   end
 
-  def guess_code(code_pegs, code_length)
+  def guess_code(code_length, code_pegs)
     possible_codes = code_pegs.repeated_permutation(code_length).to_a
   end
 end
