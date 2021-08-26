@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Game
+  attr_reader :turn
+
   def initialize
     @turn_number = 1
     @max_turns = 12
