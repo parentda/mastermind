@@ -27,7 +27,7 @@ class String
     "\e[36m#{self}\e[0m"
   end
 
-  def gray
+  def white
     "\e[37m#{self}\e[0m"
   end
 
@@ -59,7 +59,7 @@ class String
     "\e[46m#{self}\e[0m"
   end
 
-  def bg_gray
+  def bg_white
     "\e[47m#{self}\e[0m"
   end
 
