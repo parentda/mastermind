@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class Computer
-  def initialize; end
-
-  def make_code(code_length, code_pegs)
-    Array.new(code_length) { code_pegs.sample }
+  def initialize
+    @code_set = board.code_pegs.repeated_permutation(board.code_length).to_a
   end
 
-  def guess_code(code_length, code_pegs)
-    possible_codes = code_pegs.repeated_permutation(code_length).to_a
+  def make_code(board)
+    Array.new(board.code_length) { board.code_pegs.sample }
+  end
+
+  def guess_code(board)
+    sleep(1)
+    possible_codes.sample
   end
 end

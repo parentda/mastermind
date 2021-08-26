@@ -37,7 +37,7 @@ class Game
   end
 
   def input_guess
-    while (code = @codebreaker.guess_code(@board.code_length, @board.code_pegs))
+    while (code = @codebreaker.guess_code(@board))
       return code if @board.valid_code?(code)
 
       input_warning
@@ -48,8 +48,8 @@ class Game
     guess = input_guess
     hints = @board.generate_hints(guess)
     @board.update_guesses(@turn_number, guess, hints)
-    @game_over = @board.game_over?(guess)
     @board.draw_board
+    @game_over = @board.game_over?(guess)
     @turn_number += 1
   end
 
@@ -57,9 +57,9 @@ class Game
     case @game_mode
     when @game_mode_options[0]
       @codebreaker = Human.new
-      @codemaker = Computer.new
+      @codemaker = Computer.new(@board)
     when @game_mode_options[1]
-      @codebreaker = Computer.new
+      @codebreaker = Computer.new(@board)
       @codemaker = Human.new
     else
       puts 'Error, invalid selection'

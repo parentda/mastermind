@@ -6,13 +6,13 @@ class Human
 
   def initialize; end
 
-  def make_code(code_length, code_pegs)
-    set_code_prompt(code_length, code_pegs)
+  def make_code(board)
+    set_code_prompt(board.code_length, board.code_pegs)
     gets.chomp.split('').map(&:to_i)
   end
 
-  def guess_code(code_length, code_pegs)
-    guess_code_prompt(code_length, code_pegs)
+  def guess_code(board)
+    guess_code_prompt(board.code_length, board.code_pegs)
     gets.chomp.split('').map(&:to_i)
   end
 end
