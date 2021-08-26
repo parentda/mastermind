@@ -58,9 +58,17 @@ class Board
     @code == guess
   end
 
-  def draw_board; end
+  def draw_board
+    @guesses.each do |turn, value|
+      puts "Turn #{turn}   |   #{value[0].join(' ')}   |   #{value[1].join(' ')}"
+    end
+  end
 end
 
 board = Board.new
 board.code = [1, 2, 4, 3]
-p board.generate_hints([4, 1, 1, 3])
+hint1 = board.generate_hints([4, 1, 1, 3])
+board.update_guesses(1, [4, 1, 1, 3], hint1)
+hint2 = board.generate_hints([1, 2, 1, 3])
+board.update_guesses(2, [1, 2, 1, 3], hint2)
+board.draw_board
