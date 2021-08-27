@@ -60,9 +60,4 @@ class Board
   def game_over?(guess)
     @code == guess
   end
-
-  def draw_board
-    puts "\nGuess ##{@guesses.keys.last}"
-    puts "#{@guesses[@guesses.keys.last][0].map { |key| format(key) }.join(' ')}   |   Clues: #{@guesses[@guesses.keys.last][1].map { |key| format(key) }.join(' ')}\n"
-  end
 end

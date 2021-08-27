@@ -57,7 +57,7 @@ class Game
     guess = input_guess
     hints = @board.generate_hints(guess, @board.code)
     @board.update_guesses(@turn_number, guess, hints)
-    @board.draw_board
+    display_board(@board)
     @game_over = @board.game_over?(guess)
     @turn_number += 1
   end

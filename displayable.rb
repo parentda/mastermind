@@ -11,8 +11,10 @@ module Display
   end
 
   def game_mode_message
-    puts "Enter '1' to be the Codebreaker"
-    puts "Enter '2' to be the Codemaker"
+    puts <<~HEREDOC
+    Enter '1' to be the Codebreaker
+    Enter '2' to be the Codemaker
+    HEREDOC
   end
 
   def input_warning
@@ -25,6 +27,15 @@ module Display
 
   def game_end_message
     puts 'Game Over!'
+  end
+
+  def display_board(board)
+    guesses = board.guesses
+    puts <<~HEREDOC
+
+    Guess ##{guesses.keys.last}
+    #{guesses[guesses.keys.last][0].map { |key| format(key) }.join(' ')}   |   Clues: #{guesses[guesses.keys.last][1].map { |key| format(key) }.join(' ')}
+    HEREDOC
   end
 
   def format(char)
