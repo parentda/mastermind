@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+require_relative 'displayable'
 
 class Board
+  include Display
   attr_accessor :guesses, :code, :code_length, :code_pegs
 
   def initialize
@@ -61,6 +63,6 @@ class Board
 
   def draw_board
     puts "\nGuess ##{@guesses.keys.last}"
-    puts "#{@guesses[@guesses.keys.last][0].join(' ')}   |   Clues: #{@guesses[@guesses.keys.last][1].join(' ')}\n"
+    puts "#{@guesses[@guesses.keys.last][0].map { |key| format(key) }.join(' ')}   |   Clues: #{@guesses[@guesses.keys.last][1].map { |key| format(key) }.join(' ')}\n"
   end
 end

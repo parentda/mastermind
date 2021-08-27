@@ -26,4 +26,29 @@ module Display
   def game_end_message
     puts 'Game Over!'
   end
+
+  def format(char)
+    case char
+    when 1
+      "  #{char}  ".bold.white.bg_black
+    when 2
+      "  #{char}  ".bold.white.bg_red
+    when 3
+      "  #{char}  ".bold.white.bg_green
+    when 4
+      "  #{char}  ".bold.white.bg_yellow
+    when 5
+      "  #{char}  ".bold.white.bg_blue
+    when 6
+      "  #{char}  ".bold.white.bg_magenta
+    when 7
+      "  #{char}  ".bold.white.bg_cyan
+    when 8
+      "  #{char}  ".bold.black.bg_white
+    when 'R'
+      "\u25CF".red
+    when 'W'
+      "\u25CF".white
+    end
+  end
 end
