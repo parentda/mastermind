@@ -19,7 +19,7 @@ class Game
     setup
     create_code
     play_turn until @game_over || @turn_number > @max_turns
-    game_end_message
+    game_end_message(@game_mode, @game_mode_options, @game_over)
   end
 
   def setup

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
-require_relative 'displayable'
 
 class Board
-  include Display
   attr_accessor :guesses, :code, :code_length, :code_pegs
 
   def initialize

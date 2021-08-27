@@ -6,8 +6,12 @@ def game_restart
   gets.chomp.downcase == 'y'
 end
 
+def game_end
+  puts "\nThanks for playing!"
+end
+
 loop do
   game = Game.new
   game.play
-  break unless game_restart
+  break game_end unless game_restart
 end

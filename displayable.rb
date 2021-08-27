@@ -12,6 +12,7 @@ module Display
 
   def game_mode_message
     puts <<~HEREDOC
+
     Enter '1' to be the Codebreaker
     Enter '2' to be the Codemaker
     HEREDOC
@@ -22,11 +23,33 @@ module Display
   end
 
   def game_start_message
-    puts 'Let the games begin'
+    puts <<~HEREDOC
+
+    #{'-' * 100}
+
+    Welcome to MASTERMIND!
+
+    The only thing left to do is choose your role.
+    HEREDOC
   end
 
-  def game_end_message
-    puts 'Game Over!'
+  def game_end_message(game_mode, game_mode_options, game_over)
+    case game_mode
+    when game_mode_options[0]
+      case game_over
+      when true
+        puts "\nCongratulations, you cracked the code! The computer was no match for you."
+      when false
+        puts "\nYou lose. You were unable to solve the code in time."
+      end
+    when game_mode_options[1]
+      case game_over
+      when true
+        puts "\nSorry, you've lost. The computer was able to guess your code."
+      when false
+        puts "\nYou win! You really bamboozled the computer with that code."
+      end
+    end
   end
 
   def display_board(board)
