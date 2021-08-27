@@ -13,8 +13,8 @@ module Display
   def game_mode_message
     puts <<~HEREDOC
 
-    Enter '1' to be the Codebreaker
-    Enter '2' to be the Codemaker
+    Enter '1' to be the CODBREAKER
+    Enter '2' to be the CODEMAKER
     HEREDOC
   end
 
@@ -27,9 +27,46 @@ module Display
 
     #{'-' * 100}
 
-    Welcome to MASTERMIND!
+    Welcome to #{'MASTERMIND'.red.underline}!
 
-    The only thing left to do is choose your role.
+    This is a one-player code-breaking game that is played against the computer
+
+
+    #{'How To Play'.underline}
+
+    You can choose one of two roles: CODBREAKER or CODEMAKER
+
+
+    #{'CODEBREAKER'.underline}
+
+    The computer will generate a four digit secret code using any permutation of the following eight keys (repeated keys are allowed):
+
+    #{(1..8).map { |num| format(num) }.join(' ')}
+
+    As the Codebreaker, you will have 12 turns to correctly guess the code
+    
+    After each guess, you will be provided feedback as to how accurate the guess was by a set of up to four tokens of the following variety:
+
+      #{format('R')} - indicates that a key in the guess matches a key in the secret code in both position and value
+      #{format('W')} - indicates that a key in the guess matches a key in the secret code in value only
+
+    The game behaviour is illustrated in the following example:
+    
+      Secret Code 
+      #{[3, 1, 6, 7].map { |num| format(num) }.join(' ')}
+
+      Guess
+      #{[6, 3, 4, 7].map { |num| format(num) }.join(' ')}  |  Clues - #{format('R')} #{format('W')} #{format('W')}
+    
+    
+    #{'CODEMAKER'.underline}
+
+    As the Codemaker, you simply have to create the four digit secret code from the eight keys listed above
+
+    Then you can sit back and see if your code is able to stump the computer (Spoiler Alert: the computer is very good)
+
+
+    The only thing left to do now is choose your role:
     HEREDOC
   end
 
@@ -39,6 +76,7 @@ module Display
       case game_over
       when true
         puts "\nCongratulations, you cracked the code! The computer was no match for you."
+               .bold
       when false
         puts "\nYou lose. You were unable to solve the code in time."
       end
@@ -48,6 +86,7 @@ module Display
         puts "\nSorry, you've lost. The computer was able to guess your code."
       when false
         puts "\nYou win! You really bamboozled the computer with that code."
+               .bold
       end
     end
   end
